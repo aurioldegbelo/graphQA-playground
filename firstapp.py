@@ -1,26 +1,32 @@
 # pip install steamlit
 # pip install --upgrade --quiet  langchain langchain-community langchain-openai neo4j
+# pip install dotenv
+
+import dotenv
+import os
 
 import streamlit as st
-import os
 from timeit import default_timer as timer
 from langchain.chains import GraphCypherQAChain
 from langchain_openai import ChatOpenAI
 from langchain_community.graphs import Neo4jGraph
 
-# initialize environment variables
+# load and initialize environment variables
+dotenv.load_dotenv()  # take environment variables from .env.
+
 openai_api_key = os.getenv("OPENAI_KEY")
-neo4j_connection_url = os.getenv("NEO4J_CONNECTION_URL")
+neo4j_connection_url = os.getenv("NEO4J_URI")
 neo4j_username = os.getenv("NEO4J_USERNAME")
 neo4j_password = os.getenv("NEO4J_PASSWORD")
 
 # create access to the neo4j graph
 graph = Neo4jGraph(url=neo4j_connection_url, username=neo4j_username, password=neo4j_password)
 
+
 # function to query the neo4j knowledge graph
 def query_graph (user_input):
     llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0, openai_api_key=openai_api_key)
-    chain = GraphCypherQAChain.from_llm(graph=graph, llm=llm, verbose=True)
+    chain = GraphCypherQAChain.from_llm(graph=graph, llm=llm, verbose=True, return_intermediate_steps=True)
     response = chain.invoke({"query": user_input})
     return response
 
