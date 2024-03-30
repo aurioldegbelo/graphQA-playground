@@ -1,4 +1,5 @@
 # pip install steamlit
+# pip install --upgrade --quiet  langchain langchain-community langchain-openai neo4j
 
 import streamlit as st
 import numpy as np
