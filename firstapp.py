@@ -1,6 +1,8 @@
-# pip install steamlit
+# pip install streamlit
 # pip install --upgrade --quiet  langchain langchain-community langchain-openai neo4j
-# pip install dotenv
+# pip install python-dotenv
+# new virtual environment, see https://stackoverflow.com/questions/54106071/how-can-i-set-up-a-virtual-environment-for-python-in-visual-studio-code
+# after installation, activate the environment
 
 import dotenv
 import os
