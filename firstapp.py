@@ -3,6 +3,8 @@
 # pip install python-dotenv
 # new virtual environment, see https://stackoverflow.com/questions/54106071/how-can-i-set-up-a-virtual-environment-for-python-in-visual-studio-code
 # after installation, activate the environment
+# the code has been adapted from https://github.com/JohannesJolkkonen/funktio-ai-samples/blob/main/knowledge-graph-demo/main.py
+
 
 import dotenv
 import os
@@ -50,7 +52,7 @@ if "system_msgs" not in st.session_state:
     st.session_state.system_msgs = []
 
 
-message("Hello, I am a chatbot. Please ask your question") 
+message("Hello, I am a chatbot. Please ask your question...") 
 
 # React to user input
 user_input = st.chat_input("Ask your question")
@@ -78,7 +80,6 @@ if user_input:
                 message(st.session_state["user_msgs"][i], is_user=True, key=str(i) + "_user")
                 message(st.session_state["system_msgs"][i], key = str(i) + "_assistant")
 
-
     with col2:
         if cypher_query:
             st.text_area("Last Cypher Query", cypher_query, key="_cypher", height=240)
@@ -86,3 +87,6 @@ if user_input:
     with col3:
         if database_results:
             st.text_area("Last Database Results", database_results, key="_database", height=240)
+
+
+# todo (add a cypher_prompt_template and a qa_prompt_template to the GraphCypherQAChain to impove cypher queries and customize outputs)
