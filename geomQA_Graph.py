@@ -57,19 +57,21 @@ message("Hello, I am a chatbot. Please ask your question...")
 # React to user input
 user_input = st.chat_input("Ask your question")
 if user_input:
-    # Add user message to chat history
-    st.session_state.user_msgs.append(user_input)
+    with st.spinner("Processing your input..."):
+        # Add user message to chat history
+        st.session_state.user_msgs.append(user_input)
 
-    start = timer()
-    result = query_graph(user_input)
+        start = timer()
+        result = query_graph(user_input)
 
-    intermediate_steps = result['intermediate_steps']
-    cypher_query = intermediate_steps[0]['query']
-    database_results = intermediate_steps[1]['context']
-    answer = result['result']
-
-    # Add system (final) answer to chat history
-    st.session_state.system_msgs.append(answer)
+        intermediate_steps = result['intermediate_steps']
+        cypher_query = intermediate_steps[0]['query']
+        database_results = intermediate_steps[1]['context']
+        answer = result['result']
+        answer_modified = answer + (f" \n Time taken: {timer() - start:.2f}s")
+        # Add system (final) answer to chat history
+        st.session_state.system_msgs.append(answer_modified)
+        #st.write(f"Time taken: {timer() - start:.2f}s")
 
     col1, col2, col3 = st.columns([2, 1, 1])
 
