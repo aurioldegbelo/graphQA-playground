@@ -40,7 +40,7 @@ st.set_page_config(layout="wide")
 title_col, empty_col, img_col = st.columns([3, 1, 2])    
 
 with title_col:
-    st.title("Question Answering Assistant")
+    st.title("Question Answering Assistant (Graph)")
 with img_col:
     st.image("https://www.uni-muenster.de/imperia/md/images/geoinformatics/_v/2021-logo-ifgi-text-de.png", width=200)
 
