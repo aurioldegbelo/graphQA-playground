@@ -40,7 +40,7 @@ st.set_page_config(layout="wide")
 title_col, empty_col, img_col = st.columns([3, 1, 2])    
 
 with title_col:
-    st.title("Question Answering Assistant (Graph)")
+    st.title("Question Answering Assistant (Graph Data)")
 with img_col:
     st.image("https://www.uni-muenster.de/imperia/md/images/geoinformatics/_v/2021-logo-ifgi-text-de.png", width=200)
 
@@ -73,7 +73,7 @@ if user_input:
         st.session_state.system_msgs.append(answer_modified)
         #st.write(f"Time taken: {timer() - start:.2f}s")
 
-    col1, col2, col3 = st.columns([2, 1, 1])
+    col1, col2, col3 = st.columns([3, 1, 1])
 
     # Display the chat history
     with col1:
