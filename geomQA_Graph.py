@@ -22,11 +22,12 @@ dotenv.load_dotenv()  # take environment variables from .env.
 
 openai_api_key = os.getenv("OPENAI_KEY")
 neo4j_connection_url = os.getenv("NEO4J_URI")
+neo4j_database = os.getenv("NEO4J_DATABASE")
 neo4j_username = os.getenv("NEO4J_USERNAME")
 neo4j_password = os.getenv("NEO4J_PASSWORD")
 
 # create access to the neo4j graph
-graph = Neo4jGraph(url=neo4j_connection_url, username=neo4j_username, password=neo4j_password)
+graph = Neo4jGraph(url=neo4j_connection_url, database = neo4j_database, username=neo4j_username, password=neo4j_password)
 
 # function to query the neo4j knowledge graph
 def query_graph (user_input):
